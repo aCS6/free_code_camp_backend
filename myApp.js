@@ -1,4 +1,6 @@
 let express = require('express');
+require('dotenv').config()
+
 let app = express();
 
 // We have set '/public' as the static directory in the 'index.html'
@@ -12,8 +14,16 @@ app.get('/', function (req, res) {
 
 
 app.get('/json', function (req, res) {
+    const _case = process.env.MESSAGE_STYLE
+    
+    let message = 'Hello json';
+
+    if (_case === 'uppercase') {
+        message = message.toUpperCase();
+    }
+
     res.json({
-        message: 'Hello json'
+        message: message
     });
 })
 
