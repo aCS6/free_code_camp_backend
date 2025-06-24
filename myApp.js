@@ -6,7 +6,7 @@ require("dotenv").config();
 
 let app = express();
 
-
+// It should receive 'Content-Type: application/x-www-form-urlencoded'
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(function (req, res, next) {
@@ -65,6 +65,7 @@ app
     });
   })
     .post(function (req, res) {
+        console.log(req.body);
     res.json({
       name: req.body.first + " " + req.body.last,
     });
