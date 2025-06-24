@@ -1,7 +1,13 @@
 let express = require("express");
+const bodyParser = require("body-parser");
+
 require("dotenv").config();
 
+
 let app = express();
+
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(function (req, res, next) {
   let _log = `${req.method} ${req.path} - ${req.ip}`;
@@ -58,7 +64,7 @@ app
       name: req.query.first + " " + req.query.last,
     });
   })
-  .post(function (req, res) {
+    .post(function (req, res) {
     res.json({
       name: req.body.first + " " + req.body.last,
     });
