@@ -3,6 +3,11 @@ require('dotenv').config()
 
 let app = express();
 
+app.use(function (req, res, next) {
+    let _log = `${req.method} ${req.path} - ${req.ip}`
+    console.log(_log);
+    next();
+})
 // We have set '/public' as the static directory in the 'index.html'
 app.use('/public', express.static(__dirname + '/public'));
 
