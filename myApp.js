@@ -33,7 +33,15 @@ app.get('/json', function (req, res) {
 })
 
 
-
+app.get('/now', function (req, res, next) {
+    // Attach the current datetime with the request object
+    req.time = new Date().toString();
+    next();
+}, function (req, res) {
+    res.json({
+        time: req.time
+    });
+})
 
 
 
