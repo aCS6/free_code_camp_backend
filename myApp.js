@@ -1,5 +1,5 @@
 let mongoose = require("mongoose");
-const validator = require('validator');
+let Person = require("./schema");
 
 
 require("dotenv").config();
@@ -10,10 +10,19 @@ mongoose.connect(process.env.MONGO_URI, {
   useCreateIndex: true
 });
 
-let Person = require("./schema");
 
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  const person = new Person({
+    name: 'John Doe',
+    age: 30,
+    favoriteFoods: ['Pizza', 'Pasta', 'Ice Cream'],
+    email: 'jdoe@me.com'
+  });
+
+  person.save((err, data) => {
+    if (err) return done(err);
+    done(null, data);
+  });
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
