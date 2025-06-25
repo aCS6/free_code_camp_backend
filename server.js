@@ -117,8 +117,10 @@ router.post("/create-many-people", function (req, res, next) {
       next({ message: "timeout" });
     }, TIMEOUT);
     createPeople(req.body, function (err, data) {
+      console.log(req.body);
       clearTimeout(t);
       if (err) {
+        console.log(err);
         return next(err);
       }
       if (!data) {
