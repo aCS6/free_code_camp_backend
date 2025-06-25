@@ -1,12 +1,16 @@
 let mongoose = require("mongoose");
+const validator = require('validator');
+
+
 require("dotenv").config();
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true
 });
 
-let Person;
+let Person = require("./schema");
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
