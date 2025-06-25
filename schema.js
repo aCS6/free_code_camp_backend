@@ -29,12 +29,6 @@ const personSchema = new mongoose.Schema({
       message: 'Each favorite food must be a unique, non-empty string'
     }
   },
-  email: {
-    type: String,
-    lowercase: true,
-    unique: true,
-    validate: [validator.isEmail, 'Please provide a valid email address']
-  },
   createdAt: {
     type: Date,
     default: Date.now
